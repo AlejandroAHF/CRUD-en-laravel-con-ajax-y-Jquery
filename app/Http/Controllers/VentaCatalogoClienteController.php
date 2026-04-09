@@ -43,7 +43,25 @@ class VentaCatalogoClienteController extends Controller
     {
         $cliente = VentaCatalogoCliente::findOrFail($id);
         
-        $cliente->update($request->all());
+        $cliente->update([
+            'tipo_cliente'             => $request->tipoCliente,
+            'nombre'                   => $request->nombre,
+            'nombre_comercial'         => $request->nombre_comercial,
+            'tipo_persona'             => $request->tipopersona,
+            'fk_id_tipo_contribuyente' => $request->contribuyentes,
+            'cod_actividad_economica'  => $request->actividadeseconomicas,
+            'cod_tipo_documento'       => $request->tipodocumento,
+            'dui_nit'                  => $request->dui_nit,
+            'nrc'                      => $request->nrc,
+            'telefono'                 => $request->telefono,
+            'correo'                   => $request->correo,
+            'direccion'                => $request->direccion,
+            'ciudad'                   => $request->ciudad,
+            'fk_id_pais'               => $request->paises,
+            'cod_departamento'         => $request->departamentos,
+            'cod_municipio'            => $request->municipios,
+            'descripcion_adicional'    => $request->descripcion_adicional,
+        ]);
 
         return response()->json(['status' => 'ok']);
     }
